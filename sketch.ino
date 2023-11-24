@@ -10,6 +10,10 @@ unsigned long myChannelNumber = 1;
 
 const char * myWriteAPIKey = "JPER8DV6YFPEBKF4";
 
+int freq = 800;
+int channel = 0;
+int resolution = 8;
+
 const int buttonPin = 16;   // Pino do botão
 const int ledPin = 17;      // Pino do LED
 const int buzzerPin = 18;   // Pino do buzzer
@@ -31,6 +35,9 @@ int statusBuzzer = 0;
 void setup() {
 
   Serial.begin(115200);
+
+  ledcSetup(channel, freq, resolution);
+  ledcAttachPin(18, channel);
 
   Serial.print("Conectando a ");
   Serial.println(ssid);
@@ -89,15 +96,19 @@ void loop() {
   if (isOn) {
     // Lógica para acender o LED e emitir som com o buzzer
     digitalWrite(ledPin, HIGH);
-    tone(buzzerPin, 800);
+    ledcWriteTone(buzzerPin, 800);
+    statusLed = 1;
+    statusBuzzer = 1;
     delay(500);
     digitalWrite(ledPin, LOW);
-    noTone(buzzerPin);
+    ledcWrite(buzzerPin, 0);
     delay(500);
   } else {
     // Lógica para apagar o LED e desligar o som do buzzer
     digitalWrite(ledPin, LOW);
     noTone(buzzerPin);
+    statusLed = 0;
+    statusBuzzer = 0;
   }
 
   if ((millis() - lastTime) > timerDelay) {
