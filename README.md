@@ -20,3 +20,6 @@
 * ## Benefícios
   * Com esse sistema é possivel uma rápida ação médica em casos mais graves, podendo ser feito um diagnóstico precoce sobre alguma doença mais grave evitando sequelas futuros, ou evitando até a morte de pacientes. Além de que o sistema ajuda no monitoramento dos pacientes no geral.
  
+* ## Link para o video
+  * https://youtu.be/KjSXOAbyiXQ
+ 
